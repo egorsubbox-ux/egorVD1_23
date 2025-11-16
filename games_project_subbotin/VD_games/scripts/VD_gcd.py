@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
 import random
-from VD_games.cli import welcome_user
+
+from VD_games.engine import run_game
 
 
 def gcd(a, b):
@@ -17,28 +17,11 @@ def generate_gcd_question():
     return question, str(correct_answer)
 
 
-def play_gcd_game():
-    name = welcome_user()
-    print('Find the greatest common divisor of given numbers.')
-    correct_answers_count = 0
-    rounds_to_win = 3
-    while correct_answers_count < rounds_to_win:
-        question, correct_answer = generate_gcd_question()
-        print(f'Question: {question}')
-        user_answer = input('Your answer: ').strip()
-        if user_answer == correct_answer:
-            print('Correct!')
-            correct_answers_count += 1
-        else:
-            print(f"'{user_answer}' is wrong answer ;(. Correct answer was '{correct_answer}'.")
-            print(f"Let's try again, {name}!")
-            return
-    
-    print(f'Congratulations, {name}!')
-
-
 def main():
-    play_gcd_game()
+    run_game(
+        'Find the greatest common divisor of given numbers.',
+        generate_gcd_question
+    )
 
 
 if __name__ == '__main__':
